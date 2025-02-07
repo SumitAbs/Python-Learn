@@ -14,6 +14,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
 import numpy as np
 from django.http import JsonResponse
+import pandas as pd
 
 
 
@@ -230,3 +231,189 @@ def matrix_multiplication(request):
 
     result = np.dot(A, B)  # ✅ NumPy se matrix multiplication
     return JsonResponse({"result": result.tolist()})
+
+def ArrayCreationFunctions(request):
+    arr = np.array([1, 2, 3, 4, 5])  # Basic NumPy array
+    zeros_arr = np.zeros((2, 2))  # 2x2 matrix of zeros
+    ones_arr = np.ones((2, 2))  # 2x2 matrix of ones
+    full_arr = np.full((2, 2), 7)  # 2x2 matrix filled with 7
+    range_arr = np.arange(1, 10, 3)  # [1, 3, 5, 7, 9]
+    linspace_arr = np.linspace(0, 10, 5)  # [0, 2.5, 5, 7.5, 10]
+    identity_matrix = np.eye(3)  # 3x3 identity matrix
+    rand_matrix = np.random.rand(2, 2)  # Random float numbers between 0 and 1
+    randint_matrix = np.random.randint(1, 100, (3, 3))  # 3x3 random integers
+    return JsonResponse({
+        'array': arr.tolist(),
+        'zeros_arr': zeros_arr.tolist(),
+        'ones_arr': ones_arr.tolist(),
+        'full_arr_with7': full_arr.tolist(),
+        'range_arr': range_arr.tolist(),
+        'linspace_arr': linspace_arr.tolist(),
+        'identity_matrix': identity_matrix.tolist(),
+        'rand_matrix': rand_matrix.tolist(),
+        'randint_matrix': randint_matrix.tolist(),
+    })
+    
+def ArrayManipulationFunctions(request):
+    arr = np.array([1, 2, 3, 4, 5])  # Basic NumPy array
+    range_arr = np.arange(1, 10, 2)  # [1, 3, 5, 7, 9]
+    reshaped_arr = np.reshape(arr, (5, 1))  # Convert 1D to 2D
+    flattened_arr = np.array([[1, 2], [3, 4]]).flatten()  # Convert 2D to 1D
+    concatenated_arr = np.concatenate((arr, range_arr))  # Concatenating arrays
+    vstack_arr = np.vstack((arr, arr))  # Vertical stacking
+    hstack_arr = np.hstack((arr, arr))  # Horizontal stacking
+    split_arr = np.split(arr, 5)  # Split array into 5 parts
+    expanded_arr = np.expand_dims(arr, axis=0)  # Add new dimension
+    return JsonResponse({
+        'reshaped_arr': reshaped_arr.tolist(),
+        'flattened_arr': flattened_arr.tolist(),
+        'concatenated_arr': concatenated_arr.tolist(),
+        'vstack_arr': vstack_arr.tolist(),
+        'hstack_arr': hstack_arr.tolist(),
+        'split_arr': [s.tolist() for s in split_arr],
+        'expanded_arr': expanded_arr.tolist(),
+    })
+    
+def MathematicalFunctions(request):
+    arr = np.array([1, 2, 3, 4, 5])  # Basic NumPy array
+    added_arr = np.add(arr, 10)  # Add 10 to each element
+    subtracted_arr = np.subtract(arr, 2)  # Subtract 2 from each element
+    multiplied_arr = np.multiply(arr, 2)  # Multiply each element by 2
+    divided_arr = np.divide(arr, 2)  # Divide each element by 2
+    power_arr = np.power(arr, 2)  # Square each element
+    mod_arr = np.mod(arr, 3)  # Remainder when divided by 3
+    exp_arr = np.exp(arr)  # Exponential of each element
+    sqrt_arr = np.sqrt(arr)  # Square root of each element
+    return JsonResponse({
+        'added_arr': added_arr.tolist(),
+        'subtracted_arr': subtracted_arr.tolist(),
+        'multiplied_arr': multiplied_arr.tolist(),
+        'divided_arr': divided_arr.tolist(),
+        'power_arr': power_arr.tolist(),
+        'mod_arr': mod_arr.tolist(),
+        'exp_arr': exp_arr.tolist(),
+        'sqrt_arr': sqrt_arr.tolist(),
+    })
+     
+def StatisticalFunctions(request):
+    arr = np.array([1, 2, 3, 4, 5])  # Basic NumPy array
+
+    # Convert NumPy types to Python native types
+    mean_value = float(np.mean(arr))  # Convert to float
+    median_value = float(np.median(arr))  # Convert to float
+    std_dev = float(np.std(arr))  # Convert to float
+    variance = float(np.var(arr))  # Convert to float
+    min_value = int(np.min(arr))  # Convert to int
+    max_value = int(np.max(arr))  # Convert to int
+    sum_value = int(np.sum(arr))  # Convert to int
+    cumulative_sum = np.cumsum(arr)  # Convert to a Python list
+    return JsonResponse({
+        'mean_value': mean_value,
+        'median_value': median_value,
+        'std_dev': std_dev,
+        'variance': variance,
+        'min_value': min_value,
+        'max_value': max_value,
+        'sum_value': sum_value,
+        'cumulative_sum': cumulative_sum.tolist(),
+    })
+
+def RandomNumberGeneration(request):
+    arr = np.array([1, 2, 3, 4, 5])  # Basic NumPy array
+    uniform_random = np.random.rand(3)  # 3 random numbers between 0-1
+    normal_random = np.random.randn(3)  # 3 numbers from normal distribution
+    randint_random = np.random.randint(1, 10, (2, 2))  # 2x2 matrix of random integers
+    choice_random = np.random.choice(arr)  # Random element from array
+    shuffled_arr = np.random.permutation(arr)  # Shuffle array
+    return JsonResponse({
+        'uniform_random': uniform_random.tolist(),
+        'normal_random': normal_random.tolist(),
+        'randint_random': randint_random.tolist(),
+        'choice_random': choice_random.tolist(),
+        'shuffled_arr': shuffled_arr.tolist(),
+    })
+
+def SortingSearching(request):
+    arr = np.array([1, 2, 3, 4, 5])  # Basic NumPy array
+    sorted_arr = np.sort(arr)  # Sort array
+    argsorted_indices = np.argsort(arr)  # Indices of sorted elements
+    max_index = np.argmax(arr)  # Index of max value
+    min_index = np.argmin(arr)  # Index of min value
+    unique_elements = np.unique([1, 2, 2, 3, 3, 3, 4])  # Find unique values
+    return JsonResponse({
+        'sorted_arr': sorted_arr.tolist(),
+        'argsorted_indices': argsorted_indices.tolist(),
+        'max_index': max_index,
+        'min_index': min_index,
+        'unique_elements': unique_elements.tolist(),
+    })
+    
+def BooleanLogicalOperations(request):
+    arr = np.array([1, 2, 3, 4, 5])  # Basic NumPy array
+    all_positive = np.all(arr > 0)  # Check if all elements are positive
+    any_negative = np.any(arr < 0)  # Check if any element is negative
+    logical_and_result = np.logical_and(arr > 2, arr < 5)  # Logical AND operation
+    logical_or_result = np.logical_or(arr < 2, arr > 4)  # Logical OR operation
+    logical_not_result = np.logical_not(arr > 3)  # Logical NOT operation
+
+    return JsonResponse({
+        'all_positive': all_positive,
+        'any_negative': any_negative,
+        'logical_and_result': logical_and_result.tolist(),
+        'logical_or_result': logical_or_result.tolist(),
+        'logical_not_result': logical_not_result.tolist(),
+    })
+    
+def PandasExamples(request):
+    # Creating a Series (1D Data)
+    series = pd.Series([10, 20, 30, 40, 50])
+    
+    # Creating a DataFrame (2D Table)
+    data = {
+        'Name': ['Ali', 'Sara', 'Ahmed', 'Zoya'],
+        'Age': [23, 25, 22, 24],
+        'City': ['Lahore', 'Karachi', 'Islamabad', 'Faisalabad']
+    }
+    df = pd.DataFrame(data)
+
+    # Basic Statistics
+    mean_age = int(df['Age'].mean())  # Convert to int
+    median_age = int(df['Age'].median())  # Convert to int
+    std_dev_age =  (df['Age'].std())  # Convert to float (can be decimal)
+    min_age = int(df['Age'].min())  # Convert to int
+    max_age = int(df['Age'].max())  # Convert to int
+    
+    # Filtering Data (Age > 23)
+    adults = df[df['Age'] > 23].to_dict(orient='records')
+    
+    # Sorting Data (Descending Order by Age)
+    sorted_df = df.sort_values(by='Name', ascending=False).to_dict(orient='records')
+    
+    # Adding a New Column
+    df['Salary'] = [50000, 60000, 55000, 58000]
+    df_with_salary = df.to_dict(orient='records')
+    
+    # Convert numeric values to Python int for JSON serialization
+    grouped = df.groupby('Name')[['Age', 'Salary']].mean().applymap(lambda x: int(x)).to_dict()
+    
+    # Dropping a Column
+    df_dropped = df.drop(columns=['Salary']).to_dict(orient='records')
+    
+    # Converting DataFrame to Dictionary
+    df_dict = df.to_dict()
+    
+    return JsonResponse({
+        'series': series.tolist(),
+        'dataframe': df.to_dict(orient='records'),
+        'mean_age': mean_age,
+        'median_age': median_age,
+        'std_dev_age': std_dev_age,
+        'min_age': min_age,
+        'max_age': max_age,
+        'filtered_adults': adults,
+        'sorted_by_age': sorted_df,
+        'dataframe_with_salary': df_with_salary,
+        'grouped_by_city': grouped,
+        'dataframe_without_salary': df_dropped,
+        'dataframe_dict': df_dict
+    })

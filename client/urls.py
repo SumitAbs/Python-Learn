@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import views,matplotlib
 
 urlpatterns = [
     path('', views.index, name='index'), # This is the root path
@@ -15,5 +15,17 @@ urlpatterns = [
     path('cdashboard/', views.cdashboard, name='cdashboard'), # This is the Home path
     
     path('numpy-example/', views.numpy_example, name='numpy-example'),
-    path('matrix_multiplication/', views.matrix_multiplication, name='numpy-example'),
+    path('matrix_multiplication/', views.matrix_multiplication, name='matrix_multiplication'),
+    
+    path('ArrayCreationFunctions/', views.ArrayCreationFunctions, name='ArrayCreationFunctions'),
+    path('BooleanLogicalOperations/', views.BooleanLogicalOperations, name='BooleanLogicalOperations'),
+    path('SortingSearching/', views.SortingSearching, name='SortingSearching'),
+    path('RandomNumberGeneration/', views.RandomNumberGeneration, name='RandomNumberGeneration'),
+    path('StatisticalFunctions/', views.StatisticalFunctions, name='StatisticalFunctions'),
+    path('MathematicalFunctions/', views.MathematicalFunctions, name='MathematicalFunctions'),
+    path('ArrayManipulationFunctions/', views.ArrayManipulationFunctions, name='ArrayManipulationFunctions'),
+    
+    path('PandasExamples/', views.PandasExamples, name='PandasExamples'),
+    path('MatLab/', matplotlib.test, name='test'),
+    
 ]
