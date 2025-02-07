@@ -1,0 +1,38 @@
+{% include 'client/components/header.html' %}
+
+<div class="d-flex justify-content-center align-items-center vh-100" style="background:no-repeat center center/cover; position: relative;">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7 col-sm-9">
+                <!-- Glassmorphism Card -->
+                <div class="card shadow-lg glass-effect">
+                    <div class="card-header text-center text-white bg-primary">
+                        <h2>Login</h2>
+                    </div>
+                    <div class="card-body">
+                        <form action="/login/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="email" class="fw-bold">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="password" class="fw-bold">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Login</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="/forgot-password" class="text-decoration-none">Forgot Password?</a>
+                        </div>
+                        <div class="text-center mt-2">
+                            <p class="mb-0">Don't have an account? <a href="/signup" class="text-primary">Sign Up</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'client/components/footer.html' %}
