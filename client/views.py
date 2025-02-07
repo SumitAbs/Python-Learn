@@ -12,6 +12,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
+import numpy as np
+from django.http import JsonResponse
 
 
 
@@ -85,7 +87,7 @@ def set_login(request):
             login(request, user)
             # Successful login, set user as authenticated
            
-            messages.success(request, "Login successful!")
+            # messages.success(request, "Login successful!")
             return redirect('cdashboard')  
         else:
             # Invalid credentials
@@ -205,3 +207,26 @@ def reset_password(request,uidb64, token):
     #     return HttpResponse(f"Welcome to the home page. no Session data:")
     #     return render(request, "client/auth/changePassword.html")
  
+ 
+def numpy_example(request):
+    # 1D NumPy Array
+    arr = np.array([1, 2, 3, 4, 5])
+    
+    # NumPy ka mean calculate karna
+    mean_value = np.mean(arr)
+
+    # Random matrix generate karna
+    random_matrix = np.random.randint(1, 100, (1, 3)).tolist()
+
+    return JsonResponse({
+        'array': arr.tolist(),
+        'mean': mean_value,
+        'random_matrix': random_matrix
+    })
+    
+def matrix_multiplication(request):
+    A = np.array([[1, 2], [3, 4]])
+    B = np.array([[5, 6], [7, 8]])
+
+    result = np.dot(A, B)  # ✅ NumPy se matrix multiplication
+    return JsonResponse({"result": result.tolist()})

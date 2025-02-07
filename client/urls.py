@@ -13,4 +13,7 @@ urlpatterns = [
     path('reset-password/<uidb64>/<token>/', views.reset_password, name='reset-password'), # This is the reset_password path
 
     path('cdashboard/', views.cdashboard, name='cdashboard'), # This is the Home path
+    
+    path('numpy-example/', views.numpy_example, name='numpy-example'),
+    path('matrix_multiplication/', views.matrix_multiplication, name='numpy-example'),
 ]

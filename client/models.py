@@ -29,6 +29,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     password    =   models.CharField(max_length=255)  # You can use Django's hashing mechanism for storing the password securely
     phone       =   models.CharField(max_length=20, blank=True, null=True)
     address     =   models.TextField(blank=True, null=True)
+    pass_reset_hash         =   models.CharField(max_length=150, blank=True, null=True) 
+    pass_reset_hash_status  =   models.BooleanField(default=False)
     
     # Add fields required by Django's authentication system
     is_active   =   models.BooleanField(default=True)  # Used to mark if the user is active
