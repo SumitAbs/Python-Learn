@@ -149,3 +149,7 @@ EMAIL_USE_SSL = False  # Use SSL if port 465
 EMAIL_HOST_USER = 'sumit.abstain@gmail.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'vfzb luak auge jvif'  # Use App Password (not your email password)
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Session expire time set to 2 hours (7200 seconds)
+SESSION_COOKIE_AGE = 7200  # 2 hours
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # ✅ True karne se browser close hone pe session expire hoga
